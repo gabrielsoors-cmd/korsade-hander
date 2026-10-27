@@ -69,7 +69,7 @@ export default function Startsida() {
               </Link>
             </div>
           </div>
-          <div className="order-first lg:order-none">
+          <div className="order-first hidden md:block lg:order-none">
             <div className="relative mx-auto flex aspect-[5/4] max-w-xl items-center justify-center overflow-hidden rounded-stor bg-spruce-soft sm:aspect-square">
               <Logo className="relative w-[64%] sm:w-[68%]" />
             </div>
