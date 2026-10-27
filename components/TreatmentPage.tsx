@@ -10,7 +10,7 @@ import { TreatmentCard } from "./TreatmentCard";
 
 export function treatmentMetadata(slug: string) {
   const b = hittaBehandling(slug);
-  return seo({ title: b.namn, description: b.beskrivning, path: `/massage/${b.slug}` });
+  return seo({ title: `${b.namn} – medicinsk massage`, description: b.beskrivning, path: `/massage/${b.slug}` });
 }
 
 export function TreatmentPage({ slug }: { slug: string }) {
@@ -41,7 +41,7 @@ export function TreatmentPage({ slug }: { slug: string }) {
         </Link>
       </div>
 
-      <article className="behallare grid gap-10 pb-16 pt-6 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-10">
+      <article className="behallare grid grid-cols-1 gap-10 pb-16 pt-6 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-10">
         <div className="animate-in">
           <h1 className="text-4xl hyphens-auto sm:text-6xl">{b.namn}</h1>
           <p className="ingress mt-6">{b.fokus}</p>
@@ -70,7 +70,7 @@ export function TreatmentPage({ slug }: { slug: string }) {
           </div>
         </div>
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
             <Photo photo={b.bild} preload sizes="(min-width: 1024px) 50vw, 100vw" />
           </div>
         </div>
@@ -81,7 +81,7 @@ export function TreatmentPage({ slug }: { slug: string }) {
           <h2 id="andra" className="text-3xl sm:text-4xl">
             Andra behandlingar
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {andra.map((x) => (
               <li key={x.slug}>
                 <TreatmentCard b={x} compact />

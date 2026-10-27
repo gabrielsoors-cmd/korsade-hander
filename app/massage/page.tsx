@@ -37,7 +37,7 @@ export default function MassagePage() {
         }}
       />
 
-      <section className="behallare grid items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-16">
+      <section className="behallare grid grid-cols-1 items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-16">
         <div className="animate-in">
           <span className="bricka bg-spruce-soft text-spruce">
             {pris.kronor} kr / {pris.minuter} min
@@ -53,13 +53,13 @@ export default function MassagePage() {
             </Link>
           </div>
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
           <Photo photo={massageHero} preload sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </section>
 
       <section id="om-mig" aria-labelledby="om-mig-rubrik" className="bg-mist">
-        <div className="behallare sektion grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+        <div className="behallare sektion grid grid-cols-1 gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
           <div>
             <h2 id="om-mig-rubrik" className="text-3xl sm:text-4xl">
               Så arbetar jag
@@ -88,7 +88,7 @@ export default function MassagePage() {
           </h2>
           <p className="max-w-sm sm:text-right">{pris.text}</p>
         </div>
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {behandlingar.map((b) => (
             <li key={b.slug}>
               <TreatmentCard b={b} />

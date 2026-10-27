@@ -53,7 +53,7 @@ export default function Startsida() {
           }}
         />
 
-        <section className="behallare grid items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-24 lg:pt-20">
+        <section className="behallare grid grid-cols-1 items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-24 lg:pt-20">
           <div className="animate-in">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl">Korsade Händer</h1>
             <p className="ingress mt-6 max-w-xl">
@@ -70,7 +70,7 @@ export default function Startsida() {
             </div>
           </div>
           <div className="order-first hidden md:block lg:order-none">
-            <div className="relative mx-auto flex aspect-[5/4] max-w-xl items-center justify-center overflow-hidden rounded-stor bg-spruce-soft sm:aspect-square">
+            <div className="relative mx-auto flex aspect-[5/4] w-full max-w-xl items-center justify-center overflow-hidden rounded-stor bg-spruce-soft sm:aspect-square">
               <Logo className="relative w-[64%] sm:w-[68%]" />
             </div>
           </div>
@@ -80,14 +80,14 @@ export default function Startsida() {
           <h2 id="verksamheter" className="sr-only">
             Mina verksamheter
           </h2>
-          <ul className="grid gap-5 md:grid-cols-2 lg:gap-6">
+          <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
             {ingangar.map((g) => (
               <li key={g.href}>
                 <Link
                   href={g.href}
                   className="group flex h-full flex-col overflow-hidden rounded-stor bg-paper ring-1 ring-line transition-shadow hover:shadow-[0_18px_50px_-24px_rgba(21,32,28,0.35)]"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-mist">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-mist">
                     <Photo
                       photo={g.bild}
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -112,7 +112,7 @@ export default function Startsida() {
         </section>
 
         <section className="behallare pb-16 lg:pb-24">
-          <Slideshow photos={startBildflode} label="Bilder från Korsade Händer" className="aspect-[4/5] sm:aspect-[16/9]" />
+          <Slideshow photos={startBildflode} label="Bilder från Korsade Händer" className="aspect-[4/5] w-full sm:aspect-[16/9]" />
         </section>
 
         <section aria-labelledby="betalning" className="bg-mist">

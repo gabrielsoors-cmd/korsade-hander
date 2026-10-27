@@ -59,7 +59,7 @@ export const behandlingar: Behandling[] = [
     passarFor: "Dig som har värk eller stelhet i nacke, axlar, rygg eller höfter.",
     bild: klassiskBild,
     beskrivning:
-      "Klassisk medicinsk massage som börjar med en kartläggning av var spänningarna sitter. 890 kr per 50 minuter.",
+      "Medicinsk massage som börjar med en kartläggning av var spänningarna sitter. Lindrar värk i nacke, axlar, rygg och höfter. 890 kr per 50 minuter.",
   },
   {
     slug: "idrottsmassage",
@@ -73,7 +73,7 @@ export const behandlingar: Behandling[] = [
     passarFor: "Dig som tränar eller tävlar och vill återhämta dig bättre eller behandla en överbelastning.",
     bild: idrottBild,
     beskrivning:
-      "Idrottsmassage för ökat blodflöde, snabbare återhämtning och behandling av överbelastade muskler. 890 kr per 50 minuter.",
+      "Idrottsmassage för ökat blodflöde och snabbare återhämtning, anpassad efter din idrott. Behandlar överbelastade muskler. 890 kr per 50 minuter.",
   },
   {
     slug: "andningsmassage",
@@ -87,7 +87,7 @@ export const behandlingar: Behandling[] = [
     passarFor: "Dig som har spänningar i bröstkorgen eller ofta andas ytligt, till exempel vid stress.",
     bild: andningBild,
     beskrivning:
-      "Andningsmassage som behandlar musklerna i bröstkorg, nacke och mellangärde. 890 kr per 50 minuter.",
+      "Andningsmassage som behandlar musklerna i bröstkorg, nacke och mellangärde, så att andningen kan bli djupare och lugnare. 890 kr per 50 minuter.",
   },
   {
     slug: "hembesoksmassage",
@@ -102,7 +102,7 @@ export const behandlingar: Behandling[] = [
       "Dig som har svårt att ta dig till en mottagning, vill slippa resvägen eller vill boka massage till flera i samma hushåll eller på jobbet.",
     bild: hembesokBild,
     beskrivning:
-      "Massage hemma hos dig. Jag kommer med portabel bänk, oljor och handdukar. 890 kr per 50 minuter.",
+      "Medicinsk massage hemma hos dig. Jag kommer med portabel bänk, oljor och handdukar, och du väljer behandling själv. 890 kr per 50 minuter.",
   },
   {
     slug: "avslappnande-massage",
@@ -116,7 +116,7 @@ export const behandlingar: Behandling[] = [
     passarFor: "Dig som är stressad, sover dåligt eller bara behöver en stund för dig själv.",
     bild: avslappnandeBild,
     beskrivning:
-      "Avslappnande taktil massage med långa, lugna strykningar för att varva ner. 890 kr per 50 minuter.",
+      "Taktil massage med långa, lugna strykningar som låter kroppen varva ner. Passar dig som är stressad eller sover dåligt. 890 kr per 50 minuter.",
   },
 ];
 

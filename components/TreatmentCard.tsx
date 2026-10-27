@@ -9,7 +9,7 @@ export function TreatmentCard({ b, compact = false }: { b: Behandling; compact?:
       href={`/massage/${b.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-kort bg-paper ring-1 ring-line transition-shadow hover:shadow-[0_18px_50px_-24px_rgba(21,32,28,0.35)]"
     >
-      <div className={`relative overflow-hidden bg-mist ${compact ? "aspect-[16/10]" : "aspect-[3/2]"}`}>
+      <div className={`relative w-full shrink-0 overflow-hidden bg-mist ${compact ? "aspect-[16/10]" : "aspect-[3/2]"}`}>
         <Photo
           photo={b.bild}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

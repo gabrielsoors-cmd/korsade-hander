@@ -3,7 +3,7 @@
 // Prisavsnittet är kundens egen text från mallen.
 
 export const korsordIntro = {
-  rubrik: "Korsord",
+  rubrik: "Korsord på beställning",
   ingress:
     "Jag har alltid tyckt om ord: hur de låter, vad de betyder och hur de kan vridas och vändas. Att lösa korsord blev tidigt en vana, och till slut började jag konstruera egna.",
   stycke:

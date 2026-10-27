@@ -37,7 +37,7 @@ export default function KorsordPage() {
         }}
       />
 
-      <section className="behallare grid items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-16">
+      <section className="behallare grid grid-cols-1 items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-16">
         <div className="animate-in">
           <span className="bricka bg-saffron-soft text-ink">Från 500 kr</span>
           <h1 className="mt-5 text-5xl sm:text-6xl">{korsordIntro.rubrik}</h1>
@@ -52,7 +52,7 @@ export default function KorsordPage() {
             </Link>
           </div>
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
           <Photo photo={korsordHero} preload sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function KorsordPage() {
           <h2 id="mina-korsord-rubrik" className="text-3xl sm:text-4xl">
             Mina korsord
           </h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
             {typer.map(({ rubrik, stycken, exempelPdf, Icon }) => (
               <article key={rubrik} className="flex flex-col rounded-kort bg-paper p-6 ring-1 ring-line sm:p-8">
                 <span className="flex size-12 items-center justify-center rounded-full bg-saffron-soft text-ink">
@@ -92,7 +92,7 @@ export default function KorsordPage() {
       </section>
 
       <section id="testkryss" aria-labelledby="testkryss-rubrik" className="behallare sektion">
-        <div className="grid items-center gap-10 overflow-hidden rounded-stor bg-saffron px-6 py-12 sm:px-12 sm:py-14 lg:grid-cols-[1.3fr_1fr] lg:px-16">
+        <div className="grid grid-cols-1 items-center gap-10 overflow-hidden rounded-stor bg-saffron px-6 py-12 sm:px-12 sm:py-14 lg:grid-cols-[1.3fr_1fr] lg:px-16">
           <div>
             <h2 id="testkryss-rubrik" className="text-3xl sm:text-4xl">
               Prova ett av mina kryss
@@ -139,7 +139,7 @@ export default function KorsordPage() {
       </section>
 
       <section id="pris" aria-labelledby="pris-rubrik" className="bg-mist">
-        <div className="behallare sektion grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-16">
+        <div className="behallare sektion grid grid-cols-1 gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-16">
           <div>
             <h2 id="pris-rubrik" className="text-3xl sm:text-4xl">
               {korsordPris.rubrik}

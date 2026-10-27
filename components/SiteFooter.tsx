@@ -6,7 +6,7 @@ import { Logo } from "./Logo";
 export function SiteFooter() {
   return (
     <footer className="mt-auto bg-ink text-paper/70">
-      <div className="behallare grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_0.8fr_1.3fr] lg:py-20">
+      <div className="behallare grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_0.8fr_1.3fr] lg:py-20">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
             <Logo decorative className="h-12 w-auto invert" />

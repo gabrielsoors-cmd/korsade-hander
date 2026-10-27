@@ -60,6 +60,8 @@
   }
 
   body {
+    /* Skyddsnät: inget får göra sidan bredare än skärmen. */
+    overflow-x: clip;
     background: var(--color-paper);
     color: var(--color-graphite);
     font-family: var(--font-sans);
