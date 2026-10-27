@@ -1,5 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 import { mailto, site, telLink } from "@/content/site";
+import { medBas } from "@/lib/bas";
 
 type Props = {
   rubrik: string;
@@ -40,7 +41,7 @@ export function ContactBlock({ rubrik, text, amne, knapptext, id = "kontakt" }: 
         {/* Loggan som stor, svag vattenstämpel */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/logo.svg"
+          src={medBas("/logo.svg")}
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-16 -right-16 hidden w-[26rem] opacity-[0.07] invert md:block"

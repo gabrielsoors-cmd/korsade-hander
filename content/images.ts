@@ -8,14 +8,11 @@ export type Photo =
   | { pexels: number; alt: string }
   | { src: string; alt: string };
 
-// Pexels-bilderna hämtas i 2000 px bredd och skalas sedan om av Vercels bildoptimering,
-// så besökarens webbläsare pratar bara med vår egen domän.
-export const PEXELS_QUERY = "?auto=compress&cs=tinysrgb&w=2000";
-
+// Bilderna hämtas och skalas om vid varje bygge (scripts/bilder.mjs) och läggs i
+// /public/bilder/genererade/, så besökarens webbläsare bara pratar med den egna domänen.
 export function photoUrl(photo: Photo) {
   if ("src" in photo) return photo.src;
-  const id = photo.pexels;
-  return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg${PEXELS_QUERY}`;
+  return `/bilder/genererade/pexels-${photo.pexels}`;
 }
 
 // Massage

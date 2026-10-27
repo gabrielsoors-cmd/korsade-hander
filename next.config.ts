@@ -1,20 +1,22 @@
 import type { NextConfig } from "next";
 
+// Sajten publiceras som statiska filer på GitHub Pages.
+// BASE_PATH sätts av publiceringsflödet: "/korsade-hander" så länge sajten ligger på
+// github.io-adressen, och tom när den egna domänen är kopplad.
+const basePath = process.env.BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
+  output: "export",
+  trailingSlash: true,
+  basePath,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   poweredByHeader: false,
   images: {
-    // Gratisbilder från Pexels, i exakt den storlek vi begär (se content/images.ts).
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-        pathname: "/photos/**",
-        search: "?auto=compress&cs=tinysrgb&w=2000",
-      },
-    ],
-    formats: ["image/avif", "image/webp"],
+    // Bilderna skalas om i förväg av scripts/bilder.mjs, och lib/bildladdare.ts väljer rätt storlek.
+    loader: "custom",
+    loaderFile: "./lib/bildladdare.ts",
+    deviceSizes: [480, 960, 1600],
+    imageSizes: [],
   },
   turbopack: {
     rules: {

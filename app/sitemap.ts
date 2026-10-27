@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { behandlingar } from "@/content/massage";
 import { absoluteUrl } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },

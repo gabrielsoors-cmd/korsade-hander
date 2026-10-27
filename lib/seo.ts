@@ -10,7 +10,7 @@ type SeoInput = {
 };
 
 const OG_IMAGE = {
-  url: "/opengraph-image",
+  url: "/delning.png",
   width: 1200,
   height: 630,
   alt: "Korsade Händer: medicinsk massageterapi och korsord",
