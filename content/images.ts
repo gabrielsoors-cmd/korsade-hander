@@ -8,15 +8,14 @@ export type Photo =
   | { pexels: number; alt: string }
   | { src: string; alt: string };
 
-export function photoSrc(photo: Photo, width: number) {
+// Pexels-bilderna hämtas i 2000 px bredd och skalas sedan om av Vercels bildoptimering,
+// så besökarens webbläsare pratar bara med vår egen domän.
+export const PEXELS_QUERY = "?auto=compress&cs=tinysrgb&w=2000";
+
+export function photoUrl(photo: Photo) {
   if ("src" in photo) return photo.src;
   const id = photo.pexels;
-  return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
-}
-
-export function photoSrcSet(photo: Photo) {
-  if ("src" in photo) return undefined;
-  return [480, 800, 1200, 1600, 2000].map((w) => `${photoSrc(photo, w)} ${w}w`).join(", ");
+  return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg${PEXELS_QUERY}`;
 }
 
 // Massage

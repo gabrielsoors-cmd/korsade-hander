@@ -1,42 +1,39 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { photoSrc, photoSrcSet, type Photo as PhotoType } from "@/content/images";
+import { photoUrl, type Photo as PhotoType } from "@/content/images";
 
 type Props = {
   photo: PhotoType;
-  sizes?: string;
+  sizes: string;
   className?: string;
-  eager?: boolean;
+  preload?: boolean;
+  fit?: "cover" | "contain";
 };
 
-// Bild som visar en lugn platshållare om den inte går att ladda.
-export function Photo({ photo, sizes = "100vw", className = "", eager = false }: Props) {
+// Fyller sin förälder (som måste ha position: relative och en storlek).
+// Går bilden inte att ladda visas en lugn platshållare i stället.
+export function Photo({ photo, sizes, className = "", preload = false, fit = "cover" }: Props) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
     return (
-      <div role="img" aria-label={photo.alt} className={`bildplats ${className}`}>
+      <div role="img" aria-label={photo.alt} className={`bildplats absolute inset-0 ${className}`}>
         <span aria-hidden="true">{photo.alt}</span>
       </div>
     );
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      ref={(img) => {
-        if (img && img.complete && img.naturalWidth === 0 && img.currentSrc) setFailed(true);
-      }}
-      src={photoSrc(photo, 1200)}
-      srcSet={photoSrcSet(photo)}
-      sizes={sizes}
+    <Image
+      src={photoUrl(photo)}
       alt={photo.alt}
-      loading={eager ? "eager" : "lazy"}
-      fetchPriority={eager ? "high" : undefined}
-      decoding="async"
+      fill
+      sizes={sizes}
+      preload={preload}
       onError={() => setFailed(true)}
-      className={className}
+      className={`${fit === "cover" ? "object-cover" : "object-contain"} ${className}`}
     />
   );
 }

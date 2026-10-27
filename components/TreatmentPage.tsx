@@ -1,3 +1,4 @@
+import { ChevronLeft, Clock, UserRound } from "lucide-react";
 import Link from "next/link";
 import { behandlingar, hittaBehandling, pris } from "@/content/massage";
 import { mailto, site } from "@/content/site";
@@ -5,6 +6,7 @@ import { absoluteUrl, seo } from "@/lib/seo";
 import { ContactBlock } from "./ContactBlock";
 import { JsonLd } from "./JsonLd";
 import { Photo } from "./Photo";
+import { TreatmentCard } from "./TreatmentCard";
 
 export function treatmentMetadata(slug: string) {
   const b = hittaBehandling(slug);
@@ -29,72 +31,74 @@ export function TreatmentPage({ slug }: { slug: string }) {
         }}
       />
 
-      <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6">
-        <nav aria-label="Brödsmulor" className="font-rubrik text-base">
-          <ol className="flex flex-wrap gap-x-2 text-graphite">
-            <li>
-              <Link href="/massage" className="lank">
-                Medicinsk massageterapi
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-ink">
-              {b.namn}
-            </li>
-          </ol>
-        </nav>
+      <div className="behallare pt-6 sm:pt-8">
+        <Link
+          href="/massage#behandlingar"
+          className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-graphite transition-colors hover:text-ink"
+        >
+          <ChevronLeft className="size-4" aria-hidden="true" />
+          Alla behandlingar
+        </Link>
       </div>
 
-      <article className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1fr_1fr] lg:gap-16">
-        <div>
-          <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">{b.namn}</h1>
+      <article className="behallare grid gap-10 pb-16 pt-6 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-10">
+        <div className="animate-in">
+          <h1 className="text-4xl hyphens-auto sm:text-6xl">{b.namn}</h1>
           <p className="ingress mt-6">{b.fokus}</p>
-          <div className="text-flode mt-5 max-w-[38rem]">
+          <div className="text-flode mt-5 max-w-xl text-lg leading-relaxed">
             {b.stycken.map((s) => (
               <p key={s}>{s}</p>
             ))}
           </div>
-          <p className="mt-6 border-l-4 border-accent pl-4 text-lg">
-            <span className="font-rubrik font-semibold text-ink">Passar för: </span>
-            {b.passarFor}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+
+          <div className="mt-8 rounded-kort bg-spruce-soft p-5 sm:p-6">
+            <p className="flex items-center gap-2 font-semibold text-ink">
+              <UserRound className="size-5 text-spruce" aria-hidden="true" />
+              Passar för
+            </p>
+            <p className="mt-2">{b.passarFor}</p>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a href={mailto(`Bokning: ${b.namn}`)} className="knapp">
               Boka {b.namn.toLowerCase()}
             </a>
-            <p className="font-rubrik text-lg text-ink">
-              {pris.kronor} kr per {pris.minuter} minuter
+            <p className="flex items-center gap-2 font-semibold text-ink">
+              <Clock className="size-5 text-spruce" aria-hidden="true" />
+              {pris.kronor} kr / {pris.minuter} minuter
             </p>
           </div>
         </div>
-        <div className="ruta self-start">
-          <Photo photo={b.bild} eager sizes="(min-width: 1024px) 45vw, 100vw" className="aspect-[4/5] w-full object-cover" />
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+            <Photo photo={b.bild} preload sizes="(min-width: 1024px) 50vw, 100vw" />
+          </div>
         </div>
       </article>
 
-      <section aria-labelledby="andra" className="border-t-2 border-ink">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <h2 id="andra" className="text-2xl font-semibold">
+      <section aria-labelledby="andra" className="bg-mist">
+        <div className="behallare sektion">
+          <h2 id="andra" className="text-3xl sm:text-4xl">
             Andra behandlingar
           </h2>
-          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-rubrik text-lg">
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {andra.map((x) => (
               <li key={x.slug}>
-                <Link href={`/massage/${x.slug}`} className="lank">
-                  {x.namn}
-                </Link>
+                <TreatmentCard b={x} compact />
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <ContactBlock
-        rubrik="Boka en tid"
-        text={`Mejla mig och berätta att du vill boka ${b.namn.toLowerCase()} och vilka dagar som passar dig, så återkommer jag med en tid.`}
-        amne={`Bokning: ${b.namn}`}
-        knapptext="Mejla och boka"
-      />
+      <div className="pt-16 lg:pt-24">
+        <ContactBlock
+          rubrik="Boka en tid"
+          text={`Mejla mig och berätta att du vill boka ${b.namn.toLowerCase()} och vilka dagar som passar dig, så återkommer jag med en tid.`}
+          amne={`Bokning: ${b.namn}`}
+          knapptext="Mejla och boka"
+        />
+      </div>
     </>
   );
 }

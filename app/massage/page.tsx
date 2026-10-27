@@ -1,10 +1,12 @@
+import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 import { ContactBlock } from "@/components/ContactBlock";
-import { ImageStrip } from "@/components/ImageStrip";
+import { Gallery } from "@/components/Gallery";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
+import { TreatmentCard } from "@/components/TreatmentCard";
 import { massageBildflode, massageHero } from "@/content/images";
-import { behandlingar, massageIntro, pris } from "@/content/massage";
+import { behandlingar, hallpunkter, massageIntro, pris } from "@/content/massage";
 import { mailto, site } from "@/content/site";
 import { absoluteUrl, seo } from "@/lib/seo";
 
@@ -35,72 +37,93 @@ export default function MassagePage() {
         }}
       />
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
-        <div>
-          <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">{massageIntro.rubrik}</h1>
-          <p className="ingress mt-6 max-w-[38rem]">{massageIntro.ingress}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+      <section className="behallare grid items-center gap-10 pb-16 pt-10 sm:pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-16">
+        <div className="animate-in">
+          <span className="bricka bg-spruce-soft text-spruce">
+            {pris.kronor} kr / {pris.minuter} min
+          </span>
+          <h1 className="mt-5 text-5xl sm:text-6xl">{massageIntro.rubrik}</h1>
+          <p className="ingress mt-6 max-w-xl">{massageIntro.ingress}</p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href={mailto("Bokning av massage")} className="knapp">
-              Boka tid via e-post
+              Boka tid
             </a>
             <Link href="/massage#behandlingar" className="knapp knapp-ljus">
               Se behandlingarna
             </Link>
           </div>
         </div>
-        <div className="ruta">
-          <Photo photo={massageHero} eager sizes="(min-width: 1024px) 45vw, 100vw" className="aspect-[4/3] w-full object-cover" />
+        <div className="relative aspect-[4/3] overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+          <Photo photo={massageHero} preload sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </section>
 
-      <section aria-labelledby="om-mig" className="border-t-2 border-ink">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <h2 id="om-mig" className="text-4xl font-semibold tracking-tight">
-            Så arbetar jag
-          </h2>
-          <div className="text-flode max-w-[40rem]">
-            {massageIntro.stycken.map((s) => (
-              <p key={s}>{s}</p>
-            ))}
+      <section id="om-mig" aria-labelledby="om-mig-rubrik" className="bg-mist">
+        <div className="behallare sektion grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+          <div>
+            <h2 id="om-mig-rubrik" className="text-3xl sm:text-4xl">
+              Så arbetar jag
+            </h2>
+            <div className="text-flode mt-6 max-w-2xl text-lg leading-relaxed">
+              {massageIntro.stycken.map((s) => (
+                <p key={s}>{s}</p>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section id="behandlingar" aria-labelledby="behandlingar-rubrik" className="border-t-2 border-ink">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-          <h2 id="behandlingar-rubrik" className="text-4xl font-semibold tracking-tight">
-            Mina behandlingar
-          </h2>
-          <ul className="mt-8 border-t-2 border-ink">
-            {behandlingar.map((b) => (
-              <li key={b.slug} className="border-b-2 border-ink">
-                <Link
-                  href={`/massage/${b.slug}`}
-                  className="group grid gap-1 py-5 transition-colors hover:bg-accent-soft sm:grid-cols-[18rem_1fr_auto] sm:items-center sm:gap-6 sm:px-3"
-                >
-                  <span className="font-rubrik text-2xl font-semibold text-ink group-hover:underline group-hover:underline-offset-4">
-                    {b.namn}
-                  </span>
-                  <span className="text-lg leading-snug">{b.kort}</span>
-                  <span className="font-rubrik text-base text-ink underline decoration-accent decoration-2 underline-offset-4 sm:no-underline">
-                    Läs mer
-                  </span>
-                </Link>
+          <ul className="space-y-4 self-start rounded-kort bg-paper p-6 ring-1 ring-line sm:p-8">
+            {hallpunkter.map((h) => (
+              <li key={h} className="flex gap-3 text-ink">
+                <CircleCheck className="mt-0.5 size-5 shrink-0 text-spruce" aria-hidden="true" />
+                <span className="font-medium">{h}</span>
               </li>
             ))}
           </ul>
-
-          <div id="pris" className="mt-10 flex flex-col gap-4 bg-accent p-6 text-on-accent sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <p className="font-rubrik text-2xl font-semibold leading-tight sm:text-3xl">{pris.text}</p>
-            <a href={mailto("Bokning av massage")} className="knapp knapp-ljus shrink-0">
-              Boka tid via e-post
-            </a>
-          </div>
         </div>
       </section>
 
-      <section aria-label="Bildflöde" className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
-        <ImageStrip photos={massageBildflode} label="Bilder från massagen, scrolla i sidled" />
+      <section id="behandlingar" aria-labelledby="behandlingar-rubrik" className="behallare sektion">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <h2 id="behandlingar-rubrik" className="text-3xl sm:text-4xl">
+            Mina behandlingar
+          </h2>
+          <p className="max-w-sm sm:text-right">{pris.text}</p>
+        </div>
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {behandlingar.map((b) => (
+            <li key={b.slug}>
+              <TreatmentCard b={b} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="pris" aria-labelledby="pris-rubrik" className="behallare pb-16 lg:pb-24">
+        <div className="flex flex-col gap-8 rounded-stor bg-spruce-soft p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <h2 id="pris-rubrik" className="text-2xl sm:text-3xl">
+              Pris
+            </h2>
+            <p className="mt-3 text-5xl font-semibold tracking-tight text-ink sm:text-6xl">
+              {pris.kronor} kr
+              <span className="ml-2 text-xl font-medium tracking-normal text-graphite sm:text-2xl">
+                / {pris.minuter} minuter
+              </span>
+            </p>
+            <p className="mt-3">Samma pris för alla behandlingar.</p>
+          </div>
+          <a href={mailto("Bokning av massage")} className="knapp shrink-0">
+            Boka tid
+          </a>
+        </div>
+      </section>
+
+      <section aria-labelledby="bilder-rubrik" className="behallare pb-16 lg:pb-24">
+        <h2 id="bilder-rubrik" className="text-3xl sm:text-4xl">
+          Bilder
+        </h2>
+        <div className="mt-8">
+          <Gallery photos={massageBildflode} variant="rad" />
+        </div>
       </section>
 
       <ContactBlock

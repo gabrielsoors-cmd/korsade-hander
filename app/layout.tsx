@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/familjen-grotesk";
-import "@fontsource-variable/newsreader/opsz.css";
-import "@fontsource-variable/newsreader/opsz-italic.css";
+import "@fontsource-variable/schibsted-grotesk";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { site } from "@/content/site";

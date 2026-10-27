@@ -1,15 +1,16 @@
 "use client";
 
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { Photo as PhotoType } from "@/content/images";
 import { Photo } from "./Photo";
 import { useReducedMotion } from "./useReducedMotion";
 
-type Props = { photos: PhotoType[]; label: string; interval?: number };
+type Props = { photos: PhotoType[]; label: string; interval?: number; className?: string };
 
-// Bildspel som tonar mellan bilderna med en långsam zoom. Kan pausas, och står still om
-// besökaren har valt minskade rörelser i sitt system.
-export function Slideshow({ photos, label, interval = 6000 }: Props) {
+// Bildspel som tonar mellan bilderna med en långsam zoom. Kan pausas, och står still
+// om besökaren har valt minskade rörelser i sitt system.
+export function Slideshow({ photos, label, interval = 6000, className = "" }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const reduce = useReducedMotion();
@@ -22,56 +23,64 @@ export function Slideshow({ photos, label, interval = 6000 }: Props) {
   }, [playing, interval, photos.length]);
 
   const go = (step: number) => setIndex((i) => (i + step + photos.length) % photos.length);
+  const knapp =
+    "inline-flex size-10 items-center justify-center rounded-full bg-paper/90 text-ink shadow-sm backdrop-blur transition-colors hover:bg-paper";
 
   return (
-    <section aria-roledescription="bildspel" aria-label={label} className="relative">
-      <div className="ruta relative aspect-[4/5] overflow-hidden bg-mist sm:aspect-[16/9]">
-        {photos.map((photo, i) => {
-          const active = i === index;
-          return (
-            <div
-              key={i}
-              role="group"
-              aria-roledescription="bild"
-              aria-label={`${i + 1} av ${photos.length}`}
-              aria-hidden={!active}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${active ? "opacity-100" : "opacity-0"}`}
-            >
-              <Photo
-                photo={photo}
-                eager={i === 0}
-                sizes="(min-width: 1280px) 1200px, 100vw"
-                className={`h-full w-full object-cover ${active && playing ? "animate-zoom" : ""}`}
-              />
+    <section
+      aria-roledescription="bildspel"
+      aria-label={label}
+      className={`relative overflow-hidden rounded-stor bg-mist ${className}`}
+    >
+      {photos.map((photo, i) => {
+        const active = i === index;
+        return (
+          <div
+            key={i}
+            role="group"
+            aria-roledescription="bild"
+            aria-label={`${i + 1} av ${photos.length}: ${photo.alt}`}
+            aria-hidden={!active}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${active ? "opacity-100" : "opacity-0"}`}
+          >
+            <div className={`absolute inset-0 ${active && playing ? "animate-zoom" : ""}`}>
+              <Photo photo={photo} preload={i === 0} sizes="(min-width: 1152px) 1088px, 100vw" />
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
 
-      <div className="mt-3 flex items-center justify-between gap-4 font-rubrik">
-        <p className="text-sm text-graphite" aria-live={playing ? "off" : "polite"}>
-          {index + 1} / {photos.length}
-          <span className="sr-only">: {photos[index].alt}</span>
-        </p>
-        <div className="flex">
-          <button type="button" onClick={() => go(-1)} className="knapp knapp-ljus min-h-11 px-4 text-base">
-            Föregående
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/40 to-transparent" />
+
+      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 p-4 sm:p-5">
+        <div className="flex gap-1.5" aria-hidden="true">
+          {photos.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 rounded-full bg-paper transition-all duration-500 ${i === index ? "w-6" : "w-1.5 opacity-60"}`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button type="button" onClick={() => go(-1)} className={knapp}>
+            <ChevronLeft className="size-5" aria-hidden="true" />
+            <span className="sr-only">Föregående bild</span>
           </button>
           {!reduce && (
-            <button
-              type="button"
-              onClick={() => setPaused((p) => !p)}
-              aria-pressed={paused}
-              className="knapp knapp-ljus -ml-0.5 min-h-11 px-4 text-base"
-            >
-              {paused ? "Spela" : "Pausa"}
+            <button type="button" onClick={() => setPaused((p) => !p)} className={knapp}>
+              {paused ? <Play className="size-4" aria-hidden="true" /> : <Pause className="size-4" aria-hidden="true" />}
+              <span className="sr-only">{paused ? "Starta bildspelet" : "Pausa bildspelet"}</span>
             </button>
           )}
-          <button type="button" onClick={() => go(1)} className="knapp knapp-ljus -ml-0.5 min-h-11 px-4 text-base">
-            Nästa
+          <button type="button" onClick={() => go(1)} className={knapp}>
+            <ChevronRight className="size-5" aria-hidden="true" />
+            <span className="sr-only">Nästa bild</span>
           </button>
         </div>
       </div>
+      <p className="sr-only" aria-live={playing ? "off" : "polite"}>
+        Bild {index + 1} av {photos.length}: {photos[index].alt}
+      </p>
     </section>
   );
 }

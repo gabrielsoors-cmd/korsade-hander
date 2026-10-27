@@ -27,6 +27,14 @@ export const massageIntro = {
   ],
 };
 
+// Korta punkter bredvid "Så arbetar jag".
+export const hallpunkter = [
+  "Certifierad medicinsk massageterapeut",
+  "Behandlingen anpassas efter dig och dina besvär",
+  "Råd och övningar att ta med hem",
+  "Hembesök med portabel bänk",
+];
+
 export type Behandling = {
   slug: string;
   namn: string;

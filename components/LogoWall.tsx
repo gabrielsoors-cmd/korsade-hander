@@ -1,18 +1,16 @@
 import type { Kund } from "@/content/korsord";
 
-// Kunder som rutor i ett rutnät. Har kunden en godkänd logotyp visas den, annars namnet.
+// Kunder i ett rutnät. Har kunden en godkänd logotyp visas den, annars namnet.
 export function LogoWall({ kunder }: { kunder: Kund[] }) {
   return (
-    <ul className="rutnat grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {kunder.map((k) => (
-        <li key={k.namn} className="ruta flex aspect-[3/2] items-center justify-center bg-paper p-4 sm:p-6">
+        <li key={k.namn} className="flex min-h-24 items-center justify-center rounded-kort bg-mist px-4 py-5 text-center sm:min-h-28">
           {k.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={k.logo} alt={k.namn} loading="lazy" className="max-h-full max-w-full object-contain" />
+            <img src={k.logo} alt={k.namn} loading="lazy" className="max-h-14 max-w-full object-contain" />
           ) : (
-            <span className="text-center font-rubrik text-lg font-semibold leading-tight text-ink sm:text-xl">
-              {k.namn}
-            </span>
+            <span className="text-[0.9375rem] font-semibold leading-snug text-ink/75 sm:text-base">{k.namn}</span>
           )}
         </li>
       ))}

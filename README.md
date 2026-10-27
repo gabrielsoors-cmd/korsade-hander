@@ -25,15 +25,19 @@ Alla texter och uppgifter ligger i `content/` – du behöver inte röra kompone
 
 **Exempel-PDF:er:** lägg filen i `public/pdf/` och fyll i `exempelPdf` i `content/korsord.ts`. Knappen visas först när sökvägen är ifylld.
 
-## Designtokens
+## Design
 
-Färger och typsnitt finns i `app/globals.css` (`@theme`):
+Färger, typsnitt och former finns i `app/globals.css` (`@theme`):
 
-- Papper `#ffffff`, bläck `#000000`, grafit `#3e3f44` (brödtext)
-- Massage: tallgrönt `#2c5a4b` / `#e3eee9`
-- Korsord: markeringsgult `#ffd84d` / `#fff3c2`
-- Rubriker: Familjen Grotesk. Brödtext: Newsreader. Båda självhostade via Fontsource.
-- Kantiga former och 2 px tuschkant, som rutorna i ett korsord och linjerna i loggan.
+- Vitt `#ffffff` och sval ljusgrå `#f3f5f3` som bakgrunder, text `#15201c` / `#55625d`
+- Huvudfärg granskogsgrön `#1e4a3e` (ljus variant `#e4ede9`)
+- Accent för korsorden: saffransgul `#f1be48` (ljus variant `#fbf0d2`)
+- Typsnitt: Schibsted Grotesk, självhostat via Fontsource
+- Rundade hörn (`rounded-kort` 20 px, `rounded-stor` 32 px), runda knappar
+
+Sidhuvudet är fast i toppen. På mobil och surfplatta finns en meny bakom hamburgerknappen.
+
+Bilderna går via Vercels bildoptimering (next/image), så besökarens webbläsare hämtar allt från den egna domänen. Sajten sätter inga kakor och behöver därför ingen kakbanner. Läggs statistik eller inbäddningar från andra tjänster till senare måste det ses över.
 
 Loggan (`public/logo.svg`) är vektoriserad från kundens PNG.
 
