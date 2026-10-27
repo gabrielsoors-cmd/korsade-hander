@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Korsade Händer – korsadehander.se
 
-## Getting Started
+Webbplats för den enskilda firman Korsade Händer: medicinsk massageterapi och korsordskonstruktion.
 
-First, run the development server:
+- `/` – startsida med namnkrysset, ingångar till de två delarna, bildspel och Swish/bankgiro
+- `/massage` – medicinsk massageterapi, med en egen sida per behandling under `/massage/...`
+- `/korsord` – korsord, testkryss, kunder, pris och galleri
+
+Byggd med Next.js 16 (App Router) och Tailwind CSS 4. Hostas på Vercel, som bygger om sajten automatiskt vid varje push till `main`.
+
+## Ändra innehåll
+
+Alla texter och uppgifter ligger i `content/` – du behöver inte röra komponenterna:
+
+| Fil | Innehåll |
+| --- | --- |
+| `content/site.ts` | E-post, telefon, Swish, bankgiro, länk till testkrysset |
+| `content/massage.ts` | Texter, behandlingar och pris för massagen |
+| `content/korsord.ts` | Texter, exempel-PDF:er, kundlista och pris för korsorden |
+| `content/images.ts` | Alla bilder |
+
+**Bilder:** tills Korsade Händer har egna bilder används gratisbilder från Pexels. Lägg en egen bild i `public/bilder/` och byt posten i `content/images.ts` till `{ src: "/bilder/filnamn.jpg", alt: "..." }`. Korsordsgalleriet (`korsordGalleri`) ska fyllas med bilder på riktiga korsord.
+
+**Kundlogotyper:** lägg filen i `public/kunder/` (helst SVG eller PNG med transparent bakgrund) och sätt `logo: "/kunder/filnamn.svg"` på kunden i `content/korsord.ts`. Utan logotyp visas namnet. Visa bara logotyper som kunden har godkänt.
+
+**Exempel-PDF:er:** lägg filen i `public/pdf/` och fyll i `exempelPdf` i `content/korsord.ts`. Knappen visas först när sökvägen är ifylld.
+
+## Designtokens
+
+Färger och typsnitt finns i `app/globals.css` (`@theme`):
+
+- Papper `#ffffff`, bläck `#000000`, grafit `#3e3f44` (brödtext)
+- Massage: tallgrönt `#2c5a4b` / `#e3eee9`
+- Korsord: markeringsgult `#ffd84d` / `#fff3c2`
+- Rubriker: Familjen Grotesk. Brödtext: Newsreader. Båda självhostade via Fontsource.
+- Kantiga former och 2 px tuschkant, som rutorna i ett korsord och linjerna i loggan.
+
+Loggan (`public/logo.svg`) är vektoriserad från kundens PNG.
+
+## Utveckling
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npx tsc --noEmit   # typkontroll
+npm run build      # produktionsbygge
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Status
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Klart i första versionen: alla sidor, mobilanpassning, SEO-grund (titlar, beskrivningar, canonical, sitemap, robots, ikoner, delningsbild, strukturerad data), 404-sida.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Väntar på kunden:
 
-## Learn More
+- Rättning av alla texter (de är utkast, se kommentarerna i `content/`)
+- Exakt titel och utfärdare för certifieringen
+- Telefonnummer (om det ska synas)
+- Var behandlingarna görs, och vad hembesök kostar i resa
+- Egna bilder, bilder på korsord till galleriet och exempel-PDF:er
+- Godkända logotyper från tidigare kunder
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Senare: bokning och betalning online.

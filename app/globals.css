@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  Designtokens för Korsade Händer.
+  Loggan är svart tusch på vitt papper med rutiga manschetter (ett korsordsrutnät),
+  så grunden är papper + bläck. Varje del av sajten har en egen accent:
+  massage = tallgrönt, korsord = markeringsgult (färgen på det markerade ordet i ett digitalt kryss).
+*/
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #000000;
+  --color-graphite: #3e3f44;
+  --color-pencil: #8a8a86;
+  --color-mist: #f3f3f1;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-pine: #2c5a4b;
+  --color-pine-soft: #e3eee9;
+  --color-highlight: #ffd84d;
+  --color-highlight-soft: #fff3c2;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-rubrik: "Familjen Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-brod: "Newsreader Variable", ui-serif, Georgia, serif;
+
+  --animate-skriv: skriv 0.32s ease-out both;
+  --animate-zoom: zoom 9s ease-out both;
+
+  @keyframes skriv {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
   }
 }
 
+/* Accentfärg per del av sajten. Startsidan använder bläck. */
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+}
+
+:root {
+  --accent: var(--color-ink);
+  --accent-soft: var(--color-mist);
+  --on-accent: var(--color-paper);
+  color-scheme: light;
+}
+
+.tema-massage {
+  --accent: var(--color-pine);
+  --accent-soft: var(--color-pine-soft);
+  --on-accent: var(--color-paper);
+}
+
+.tema-korsord {
+  --accent: var(--color-highlight);
+  --accent-soft: var(--color-highlight-soft);
+  --on-accent: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-graphite);
+  font-family: var(--font-brod);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-rubrik);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Knappar: fyrkantiga som korsordsrutor, med tjock tuschkant. */
+  .knapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.625rem 1.25rem;
+    border: 2px solid var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-rubrik);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .knapp:hover {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .knapp-ljus {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .knapp-ljus:hover {
+    background: var(--accent-soft);
+    color: var(--color-ink);
+  }
+
+  .lank {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--accent);
+  }
+  .lank:hover {
+    text-decoration-color: var(--color-ink);
+  }
+  .tema-korsord .lank {
+    text-decoration-color: var(--color-ink);
+  }
+  .tema-korsord .lank:hover {
+    background: var(--color-highlight-soft);
+  }
+
+  /* Brödtext */
+  .text-flode > * + * {
+    margin-top: 1.1em;
+  }
+  .text-flode p {
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+  .ingress {
+    font-size: 1.3125rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+
+  /* Rutnät där rutorna delar kant, som i ett korsord. */
+  .rutnat {
+    padding: 1px;
+  }
+  .ruta {
+    outline: 2px solid var(--color-ink);
+    outline-offset: -1px;
+  }
+
+  /* Den rutiga manschetten från loggan, som band. */
+  .schack {
+    background: repeating-conic-gradient(var(--color-ink) 0 25%, var(--color-paper) 0 50%) 0 0 / 14px 14px;
+  }
+
+  /* Ersätter en bild som inte gick att ladda. */
+  .bildplats {
+    display: flex;
+    align-items: flex-end;
+    padding: 0.75rem;
+    background:
+      repeating-conic-gradient(var(--color-mist) 0 25%, var(--color-paper) 0 50%) 0 0 / 24px 24px;
+    color: var(--color-pencil);
+    font-family: var(--font-rubrik);
+    font-size: 0.875rem;
+  }
+}
+
+/* Startsidans namnkryss: hovra en ingång så markeras ordet i krysset. */
+.korsruta-cell {
+  transition: background-color 0.25s ease;
+}
+.startsida:has([data-ord="hander"]:is(:hover, :focus-visible)) .korsruta-cell[data-hander] {
+  background: var(--color-pine-soft);
+}
+.startsida:has([data-ord="korsade"]:is(:hover, :focus-visible)) .korsruta-cell[data-korsade] {
+  background: var(--color-highlight);
 }
