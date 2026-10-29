@@ -6,8 +6,10 @@ export const korsordIntro = {
   rubrik: "Korsord på beställning",
   ingress:
     "Jag har alltid tyckt om ord: hur de låter, vad de betyder och hur de kan vridas och vändas. Att lösa korsord blev tidigt en vana, och till slut började jag konstruera egna.",
-  stycke:
+  stycken: [
+    "Det perfekta korsordet för dig är det som du inte kan lägga ifrån dig för att det är utmanande, lärorikt, meditativt och framför allt väldigt kul.",
     "I dag gör jag korsord på beställning till privatpersoner, företag och föreningar, och har ett kryssotek med färdiga kryss.",
+  ],
 };
 
 export const skraddarsydda = {

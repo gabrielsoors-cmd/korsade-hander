@@ -81,8 +81,9 @@ export const behandlingar: Behandling[] = [
     kort: "Lugna, riktade grepp som hjälper bröstkorgen att röra sig friare.",
     fokus: "Fokus på behandling av andningsmuskulaturen.",
     stycken: [
+      "Jag jobbar enligt Lotorpsmetoden.",
       "Mellan revbenen, i bröstkorgen, nacken och mellangärdet sitter muskler som arbetar med varje andetag. När de blir spända kan andningen bli ytlig och ansträngd.",
-      "Med lugna, riktade grepp hjälper jag bröstkorgen att röra sig friare, så att andningen kan bli djupare och lugnare. Har du astma, KOL eller någon annan diagnos som påverkar andningen, berätta det när du bokar.",
+      "Med lugna, riktade grepp hjälper jag bröstkorgen att röra sig friare. Detta i kombination med instruktion i korrekt andningsteknik ger en lugnare och djupare andning. Har du astma, KOL eller någon annan diagnos som påverkar andningen, berätta det när du bokar.",
     ],
     passarFor: "Dig som har spänningar i bröstkorgen eller ofta andas ytligt, till exempel vid stress.",
     bild: andningBild,

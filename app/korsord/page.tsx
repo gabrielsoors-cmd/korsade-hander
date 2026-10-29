@@ -42,7 +42,11 @@ export default function KorsordPage() {
           <span className="bricka bg-saffron-soft text-ink">Från 500 kr</span>
           <h1 className="mt-5 text-5xl sm:text-6xl">{korsordIntro.rubrik}</h1>
           <p className="ingress mt-6 max-w-xl">{korsordIntro.ingress}</p>
-          <p className="mt-4 max-w-xl text-lg leading-relaxed">{korsordIntro.stycke}</p>
+          {korsordIntro.stycken.map((s) => (
+            <p key={s} className="mt-4 max-w-xl text-lg leading-relaxed">
+              {s}
+            </p>
+          ))}
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href={mailto("Beställning av korsord")} className="knapp">
               Beställ ett korsord
