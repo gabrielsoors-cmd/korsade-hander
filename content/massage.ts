@@ -22,7 +22,7 @@ export const massageIntro = {
     "Den medicinska massageterapin utgår från hur kroppen faktiskt fungerar. Innan jag börjar behandla tar vi reda på var det gör ont, vad som triggar besvären och hur du rör dig i vardagen.",
   stycken: [
     "Jag är certifierad medicinsk massageterapeut och tar emot allt från idrottare med överbelastade muskler till dig som har ont i nacke och rygg efter långa dagar vid skrivbordet.",
-    "Min arbetsfilosofi är att varje behandling ska utgå från dig. Ingen kropp är den andra lik, och det som hjälper en person kan vara fel för nästa. Därför lyssnar jag, känner efter och justerar under hela behandlingen.",
+    "Min arbetsfilosofi är att varje behandling ska utgå från dig. Ingen kropp är den andra lik och det som hjälper en person behöver inte vara rätt för nästa. Därför lyssnar jag, känner efter och justerar under hela behandlingen.",
     "Jag brukar nästan alltid avsluta med några enkla övningar eller råd som du kan ta med dig hem, så att effekten håller i sig längre.",
   ],
 };
