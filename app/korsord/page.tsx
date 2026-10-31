@@ -56,7 +56,7 @@ export default function KorsordPage() {
             </Link>
           </div>
         </div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist">
           <Photo photo={korsordHero} preload sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </section>

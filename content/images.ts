@@ -51,9 +51,10 @@ export const massageBildflode: Photo[] = [
 ];
 
 // Korsord
+// Kundens eget foto: ett av Korsade Händers korsord som håller på att lösas.
 export const korsordHero: Photo = {
-  pexels: 13533591,
-  alt: "Någon som löser ett korsord med penna",
+  src: "/bilder/korsord-loses.jpg",
+  alt: "Ett av Korsade Händers korsord, med flygplan och Flygvapnets 100-årslogga, som håller på att lösas med penna",
 };
 
 // Galleriet ska fyllas med bilder på korsord Korsade Händer har gjort.
@@ -75,7 +76,7 @@ export const ingangKorsord: Photo = korsordGalleri[1];
 
 export const startBildflode: Photo[] = [
   massageHero,
-  korsordHero,
+  { pexels: 13533591, alt: "Någon som löser ett korsord med penna" },
   klassiskBild,
   korsordGalleri[0],
   massageBildflode[0],
