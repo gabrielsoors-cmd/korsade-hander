@@ -29,8 +29,8 @@ export const idrottBild: Photo = {
   alt: "Händer som arbetar med benmuskulaturen under en behandling",
 };
 export const andningBild: Photo = {
-  pexels: 19666192,
-  alt: "Behandling av nacke och skuldror",
+  pexels: 27730453,
+  alt: "Massageterapeut i orange tröja som behandlar en person på en behandlingsbänk",
 };
 export const hembesokBild: Photo = {
   pexels: 6628473,
@@ -47,7 +47,7 @@ export const massageBildflode: Photo[] = [
   { pexels: 3248690, alt: "Terapeutisk massage på en mottagning" },
   { pexels: 11774389, alt: "Behandlingsrum med massagebänk" },
   { pexels: 9146364, alt: "Massage av ryggen" },
-  { pexels: 27730453, alt: "Djupgående massage för återhämtning efter träning" },
+  { pexels: 19666192, alt: "Behandling av nacke och skuldror" },
 ];
 
 // Korsord
@@ -58,21 +58,25 @@ export const korsordHero: Photo = {
 };
 
 // Galleriet ska fyllas med bilder på korsord Korsade Händer har gjort.
-// Tills de finns visar det gratisbilder på korsord.
+// Egna korsord ligger i /public/bilder/, resten är gratisbilder tills de byts ut.
 export const korsordGalleri: Photo[] = [
   { pexels: 8899560, alt: "Korsord i en dagstidning som håller på att lösas" },
   { pexels: 233221, alt: "Ett korsord som löses vid ett träbord" },
-  { pexels: 6939462, alt: "Två personer som löser ett korsord tillsammans över en kopp kaffe" },
+  { src: "/bilder/korsord-snokryss.jpg", alt: "Ett av Korsade Händers korsord med vintertema: en igloo och en snöflinga ovanför rutorna" },
   { pexels: 12585534, alt: "En liten figur som letar efter svaret i ett korsord" },
   { pexels: 5908695, alt: "Bokstavsbrickor lagda som ett korsord" },
-  { pexels: 10557793, alt: "Ord som korsar varandra, lagda med bokstavsbrickor" },
+  { src: "/bilder/korsord-bamse.jpg", alt: "Ett av Korsade Händers korsord för barn, med Bamse och hans vänner och bilder som ledtrådar" },
   { pexels: 17706652, alt: "Tidning och kaffe på frukostbordet" },
-  { pexels: 3953481, alt: "Hopvikta tidningar och en kopp kaffe" },
+  { pexels: 6939462, alt: "Två personer som löser ett korsord tillsammans över en kopp kaffe" },
 ];
 
 // Startsidan
 export const ingangMassage: Photo = massageBildflode[1];
-export const ingangKorsord: Photo = korsordGalleri[1];
+// Bilden på Korsord-kortet på startsidan: ett av Korsade Händers egna korsord.
+export const ingangKorsord: Photo = {
+  src: "/bilder/korsord-gula-rader.jpg",
+  alt: "Ett av Korsade Händers korsord, med ledtrådar i rutorna och gula rader för lösningsorden",
+};
 
 export const startBildflode: Photo[] = [
   massageHero,
@@ -80,5 +84,5 @@ export const startBildflode: Photo[] = [
   klassiskBild,
   korsordGalleri[0],
   massageBildflode[0],
-  korsordGalleri[2],
+  { pexels: 6939462, alt: "Två personer som löser ett korsord tillsammans över en kopp kaffe" },
 ];
