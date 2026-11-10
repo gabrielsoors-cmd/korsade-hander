@@ -21,12 +21,12 @@ export const massageHero: Photo = {
   alt: "Händer som masserar ryggmusklerna på en person som ligger på en massagebänk",
 };
 export const klassiskBild: Photo = {
-  pexels: 5473182,
-  alt: "Massageterapeut som behandlar en patients axlar",
+  src: "/bilder/massage-skaggkille.jpg",
+  alt: "Massageterapeut som masserar axeln och övre ryggen på en skäggig man som ligger på mage",
 };
 export const idrottBild: Photo = {
-  pexels: 10893352,
-  alt: "Händer som arbetar med benmuskulaturen under en behandling",
+  src: "/bilder/massage-armbage-rygg.jpg",
+  alt: "Massageterapeut som arbetar med armbågen i övre delen av ryggen",
 };
 export const andningBild: Photo = {
   pexels: 27730453,
@@ -42,10 +42,10 @@ export const avslappnandeBild: Photo = {
 };
 
 export const massageBildflode: Photo[] = [
-  { pexels: 6628649, alt: "Helkroppsmassage i ett lugnt behandlingsrum" },
+  { src: "/bilder/massage-armbage-rumpa.jpg", alt: "Massageterapeut som arbetar med armbågen mot sätesmuskeln" },
   { pexels: 5240643, alt: "Massör som knådar ryggmuskler" },
   { pexels: 3248690, alt: "Terapeutisk massage på en mottagning" },
-  { pexels: 11774389, alt: "Behandlingsrum med massagebänk" },
+  { src: "/bilder/massage-blondin.jpg", alt: "Ryggmassage på en blond kvinna som ligger på mage" },
   { pexels: 9146364, alt: "Massage av ryggen" },
   { pexels: 19666192, alt: "Behandling av nacke och skuldror" },
 ];
@@ -81,8 +81,8 @@ export const ingangKorsord: Photo = {
 export const startBildflode: Photo[] = [
   massageHero,
   { pexels: 13533591, alt: "Någon som löser ett korsord med penna" },
-  klassiskBild,
+  { pexels: 5473182, alt: "Massageterapeut som behandlar en patients axlar" },
   korsordGalleri[0],
-  massageBildflode[0],
+  { pexels: 6628649, alt: "Helkroppsmassage i ett lugnt behandlingsrum" },
   { pexels: 6939462, alt: "Två personer som löser ett korsord tillsammans över en kopp kaffe" },
 ];

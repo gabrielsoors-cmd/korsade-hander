@@ -70,7 +70,7 @@ export function TreatmentPage({ slug }: { slug: string }) {
           </div>
         </div>
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist lg:aspect-[4/5]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-stor bg-mist">
             <Photo photo={b.bild} preload sizes="(min-width: 1024px) 50vw, 100vw" />
           </div>
         </div>
